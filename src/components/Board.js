@@ -32,7 +32,7 @@ export default function Board({players}) {
         const context = canvasRef.current.getContext('2d')
         players.forEach(player => {
             context.fillStyle = player.color;
-            // context.fillReact(player.position.x, player.position.y, UNIT, UNIT)
+            context.fillRect(player.position.x, player.position.y, UNIT, UNIT)
         });
     }, 
         [players]
