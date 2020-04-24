@@ -1,12 +1,12 @@
 import React, { useEffect, useReducer } from 'react';
 import './App.css';
 import Board from './components/Board';
-
 import useInterval from './hooks/useInterval'
 
 import { PLAYER_ONE, PLAYER_TWO } from './config/const'
 
 import sumCoordinates from './utils/sumCoordinates'
+import playerCanChangeToDirection from './utils/playerCanChangeToDirection'
 
 const initialState = [
   PLAYER_ONE, PLAYER_TWO
@@ -23,7 +23,7 @@ function updateGame(players, action){
   if(action.type === 'changeDirection') {
     const newPlayers = players.map(player => ({
       ...player,
-      direction: player.keys[action.key] ? player.keys[action.key] : player.direction
+      direction: player.keys[action.key] && playerCanChangeToDirection(player.direction, player.keys[action.key]) ? player.keys[action.key] : player.direction
     }))
     return newPlayers;
   }
@@ -37,7 +37,7 @@ function App() {
     gameDispatch({
       type: 'move'
     })
-  }, 1000)
+  }, 100)
 
   useEffect(() => {
     function handlekeyPress(event) {
