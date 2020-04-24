@@ -1,6 +1,12 @@
-import sumCoordinates from './sumCoordinates'
+import sumCoordinates from "./sumCoordinates";
 
-export default function playerCanChangeToDirection(currentDirection, nextDirection) {
-    const result = sumCoordinates(currentDirection, nextDirection);
-    return Object.keys(result).filter(coordinate => result[coordinate]!=0).length > 0;
+export default function playerCanChangeToDirection(
+  currentDirection,
+  nextDirection
+) {
+  const result = sumCoordinates(currentDirection, nextDirection);
+  return (
+    Object.keys(result).filter((coordinate) => result[coordinate] !== 0)
+      .length > 0
+  );
 }
